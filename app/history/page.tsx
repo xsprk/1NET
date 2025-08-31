@@ -2,7 +2,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HistoryList from '@/components/HistoryList';
@@ -10,6 +9,7 @@ import MotionWrapper from '@/components/MotionWrapper';
 import { DownloadHistory } from '@/lib/types';
 import { getDownloadHistory, saveDownloadHistory, getFavorites } from '@/lib/storage';
 import { useApp } from '@/lib/context';
+import Image from 'next/image';
 
 export default function HistoryPage() {
   const { t, settings } = useApp();
@@ -198,7 +198,7 @@ export default function HistoryPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {favorites.map((item) => (
                       <div key={item.id} className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
-                        <img src={item.thumbnail} alt={item.title} className="w-full h-32 object-cover object-top rounded-lg mb-3" />
+                        <Image src={item.thumbnail} alt={item.title} className="w-full h-32 object-cover object-top rounded-lg mb-3" />
                         <h4 className="font-medium text-gray-900 dark:text-white mb-1 line-clamp-2">{item.title}</h4>
                         <p className="text-sm text-gray-600 dark:text-gray-400">{item.author}</p>
                       </div>

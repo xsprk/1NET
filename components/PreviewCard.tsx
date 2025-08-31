@@ -1,4 +1,3 @@
-
 'use client';
 
 import { motion } from 'framer-motion';
@@ -7,6 +6,7 @@ import { PLATFORM_CONFIGS } from '@/lib/platforms';
 import { isFavorite, addToFavorites, removeFromFavorites } from '@/lib/storage';
 import { useState, useEffect } from 'react';
 import { useApp } from '@/lib/context';
+import Image from 'next/image';
 
 interface PreviewCardProps {
   media: MediaInfo;
@@ -37,11 +37,12 @@ export default function PreviewCard({ media, onDownload }: PreviewCardProps) {
       animate={{ opacity: 1, scale: 1 }}
       className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700"
     >
-      <div className="relative">
-        <img
+      <div className="relative w-full h-48">
+        <Image
           src={media.thumbnail}
           alt={media.title}
-          className="w-full h-48 object-cover object-top"
+          fill
+          className="object-cover object-top"
         />
         <div className="absolute top-4 left-4 flex items-center space-x-2 bg-black/70 px-3 py-1 rounded-full">
           <i className={`${platformConfig.icon} text-white w-4 h-4 flex items-center justify-center`}></i>

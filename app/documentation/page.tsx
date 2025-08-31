@@ -339,7 +339,7 @@ export default function DocumentationPage() {
         <MotionWrapper delay={0.6}>
           <div className="mb-20">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-12 text-center">
-              Cas d'Usage
+              Cas d&apos;usage
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {useCases.map((useCase, index) => (
@@ -472,7 +472,7 @@ export default function DocumentationPage() {
                 Prêt à Commencer ?
               </h2>
               <p className="text-xl mb-8 opacity-90">
-                Rejoignez des milliers d'utilisateurs qui font confiance à MediaDownloader
+                Rejoignez des milliers d&apos;utilisateurs qui font confiance à MediaDownloader
               </p>
               <Link
                 href="/"

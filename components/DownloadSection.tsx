@@ -1,4 +1,3 @@
-
 'use client';
 
 import { motion } from 'framer-motion';
@@ -24,7 +23,7 @@ export default function DownloadSection({ media, format, onComplete }: DownloadS
     setStatus('downloading');
     setProgress(0);
     setErrorMessage('');
-    
+
     try {
       // Progression réaliste pour le téléchargement
       const progressInterval = setInterval(() => {
@@ -39,7 +38,7 @@ export default function DownloadSection({ media, format, onComplete }: DownloadS
 
       // Téléchargement avec gestion d'erreur robuste
       let downloadUrl: string;
-      
+
       try {
         downloadUrl = await downloadMedia(media.url, format);
       } catch (apiError) {
@@ -49,7 +48,7 @@ export default function DownloadSection({ media, format, onComplete }: DownloadS
         const fallbackBlob = new Blob([fallbackContent], { type: 'text/plain' });
         downloadUrl = URL.createObjectURL(fallbackBlob);
       }
-      
+
       clearInterval(progressInterval);
       setProgress(100);
 
@@ -59,7 +58,7 @@ export default function DownloadSection({ media, format, onComplete }: DownloadS
         .replace(/[^\w\s-]/g, '')
         .replace(/\s+/g, '_');
       const filename = `${sanitizedTitle}.${format.extension}`;
-      
+
       // Toujours télécharger le fichier, même si c'est un fallback
       try {
         if (downloadUrl.startsWith('blob:')) {
@@ -71,7 +70,7 @@ export default function DownloadSection({ media, format, onComplete }: DownloadS
           document.body.appendChild(a);
           a.click();
           document.body.removeChild(a);
-          
+
           // Nettoyer l'URL blob après un délai
           setTimeout(() => {
             URL.revokeObjectURL(downloadUrl);
@@ -83,7 +82,7 @@ export default function DownloadSection({ media, format, onComplete }: DownloadS
             if (response.ok) {
               const blob = await response.blob();
               const url = window.URL.createObjectURL(blob);
-              
+
               const a = document.createElement('a');
               a.href = url;
               a.download = filename;
@@ -110,9 +109,9 @@ export default function DownloadSection({ media, format, onComplete }: DownloadS
         } else {
           throw new Error('Invalid download URL format');
         }
-        
+
         setStatus('completed');
-        
+
         // Ajouter à l'historique
         addToHistory({
           id: Date.now().toString(),
@@ -121,19 +120,18 @@ export default function DownloadSection({ media, format, onComplete }: DownloadS
           downloadedAt: new Date().toISOString(),
           status: 'completed'
         });
-        
+
       } catch (downloadError) {
         console.error('Download execution failed:', downloadError);
         setStatus('error');
         setErrorMessage('Download failed. Please try again or check your internet connection.');
-        
-        // Ajouter à l'historique même en cas d'erreur
+
         addToHistory({
           id: Date.now().toString(),
           mediaInfo: media,
           format: format,
           downloadedAt: new Date().toISOString(),
-          status: 'error',
+          status: 'failed',
           error: downloadError instanceof Error ? downloadError.message : 'Unknown error'
         });
       }
@@ -141,19 +139,19 @@ export default function DownloadSection({ media, format, onComplete }: DownloadS
       setTimeout(() => {
         onComplete();
       }, 2000);
-      
+
     } catch (error) {
       console.error('Download process failed:', error);
       setStatus('error');
       setErrorMessage('Download preparation failed. Please try again.');
-      
+
       // Ajouter à l'historique même en cas d'erreur
       addToHistory({
         id: Date.now().toString(),
         mediaInfo: media,
         format: format,
         downloadedAt: new Date().toISOString(),
-        status: 'error',
+        status: 'failed',
         error: error instanceof Error ? error.message : 'Unknown error'
       });
     }

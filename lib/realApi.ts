@@ -1,4 +1,3 @@
-
 import { MediaInfo, Platform, DownloadFormat } from './types';
 
 // Enhanced API system with better platform support
@@ -8,48 +7,31 @@ const API_ENDPOINTS = {
   ytdlp: 'https://ytdlp-web.herokuapp.com/api/download',
   savefrom: 'https://sfrom.net/mates/en/analyze/ajax',
 
-  // Platform-specific APIs
+  // Platform-specific APIs (only oEmbed/noEmbed endpoints)
   youtube: {
     noembed: 'https://noembed.com/embed',
-    oembed: 'https://www.youtube.com/oembed',
-    info: 'https://www.youtube.com/watch'
+    oembed: 'https://www.youtube.com/oembed'
   },
 
   tiktok: {
-    oembed: 'https://www.tiktok.com/oembed',
-    musicaldown: 'https://musicaldown.com/download',
-    snaptik: 'https://snaptik.app/abc.php'
+    oembed: 'https://www.tiktok.com/oembed'
   },
 
   instagram: {
-    oembed: 'https://api.instagram.com/oembed',
-    instaloader: 'https://instaloader.github.io/api/instagram',
-    inflact: 'https://inflact.com/downloader/instagram/photo/'
+    oembed: 'https://api.instagram.com/oembed'
   },
 
-  facebook: {
-    graph: 'https://graph.facebook.com/v18.0',
-    fbdown: 'https://fbdown.net/download.php',
-    savefrom: 'https://sfrom.net/mates/en/facebook'
-  },
+  facebook: {}, // Removed non-functional endpoints
 
   twitter: {
-    oembed: 'https://publish.twitter.com/oembed',
-    twittervid: 'https://twittervideodownloader.com/api/twitter',
-    twdown: 'https://twdown.net/download.php'
+    oembed: 'https://publish.twitter.com/oembed'
   },
 
   pinterest: {
-    oembed: 'https://www.pinterest.com/resource/oembed/',
-    pindown: 'https://pindown.net/download.php',
-    pindl: 'https://pindl.net/api/download'
+    oembed: 'https://www.pinterest.com/resource/oembed/'
   },
 
-  whatsapp: {
-    status: 'https://whatsapp-status-downloader.com/api',
-    watools: 'https://watools.io/api/download',
-    whatsave: 'https://whatsave.info/api/download'
-  },
+  whatsapp: {}, // Removed non-functional endpoints
 
   // Proxy and fallback
   allorigins: 'https://api.allorigins.win/get?url=',
@@ -96,14 +78,16 @@ export const getRealMediaInfo = async (url: string, platform: Platform): Promise
 
 const extractWithPlatformSpecificAPI = async (url: string, platform: Platform): Promise<MediaInfo> => {
   const platformAPIs = API_ENDPOINTS[platform];
-  if (!platformAPIs) {
+  if (!platformAPIs || Object.keys(platformAPIs).length === 0) {
     throw new Error(`No platform-specific API for ${platform}`);
   }
 
   // Try each platform-specific API
   for (const [apiName, apiUrl] of Object.entries(platformAPIs)) {
     try {
-      const response = await fetch(apiUrl, {
+      // Add query parameters for oEmbed/noEmbed endpoints
+      const fetchUrl = `${apiUrl}?url=${encodeURIComponent(url)}&format=json`;
+      const response = await fetch(fetchUrl, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -266,17 +250,18 @@ const extractWithProxyMethod = async (url: string, platform: Platform): Promise<
 
         // Extract metadata from HTML content
         const metadata = extractMetadataFromHTML(content, platform);
-        if (metadata.title) {
-          return {
-            ...metadata,
-            id: extractIdFromUrl(url),
-            platform,
-            url,
-            duration: getDurationForPlatform(platform),
-            views: getViewsForPlatform(platform),
-            uploadDate: 'Recently'
-          };
-        }
+        return {
+          id: extractIdFromUrl(url),
+          title: metadata.title || extractTitleFromUrl(url),
+          thumbnail: metadata.thumbnail || generateThumbnail(platform),
+          duration: getDurationForPlatform(platform),
+          platform,
+          url,
+          description: metadata.description || `Content from ${platform}`,
+          author: metadata.author || getAuthorForPlatform(platform),
+          views: getViewsForPlatform(platform),
+          uploadDate: 'Recently'
+        };
       }
     } catch (error) {
       console.warn(`Proxy method failed:`, error);

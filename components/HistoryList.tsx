@@ -4,6 +4,7 @@
 import { motion } from 'framer-motion';
 import { DownloadHistory } from '@/lib/types';
 import { PLATFORM_CONFIGS } from '@/lib/platforms';
+import Image from 'next/image';
 
 interface HistoryListProps {
   history: DownloadHistory[];
@@ -80,7 +81,7 @@ export default function HistoryList({ history, onRedownload }: HistoryListProps)
               className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 border border-gray-200 dark:border-gray-600"
             >
               <div className="flex items-start space-x-4">
-                <img
+                <Image
                   src={item.mediaInfo.thumbnail || '/placeholder.jpg'}
                   alt={item.mediaInfo.title || 'Media content'}
                   className="w-20 h-20 rounded-lg object-cover object-top flex-shrink-0"

@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -47,11 +46,11 @@ export default function URLInput({ onSubmit, loading = false }: URLInputProps) {
             value={url}
             onChange={(e) => handleInputChange(e.target.value)}
             placeholder={t('inputPlaceholder')}
-            className="w-full pl-12 pr-4 py-4 text-lg border-2 border-gray-200 dark:border-gray-600 rounded-2xl focus:outline-none transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
-            style={{ 
-              focusBorderColor: settings.primaryColor,
-              borderColor: isValidUrl ? settings.primaryColor : undefined
-            }}
+            className="w-full pl-12 pr-4 py-4 text-lg border-2 border-gray-200 dark:border-gray-600 rounded-2xl focus:outline-none focus:border-[color:var(--primary-color)] transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+            style={{
+              borderColor: isValidUrl ? settings.primaryColor : undefined,
+              '--primary-color': settings.primaryColor // Définir une variable CSS pour le focus
+            } as React.CSSProperties}
             disabled={loading}
           />
           {detectedPlatform && (

@@ -1,4 +1,3 @@
-
 export interface MediaInfo {
   id: string;
   title: string;
@@ -30,6 +29,7 @@ export interface DownloadHistory {
   status: 'completed' | 'failed' | 'pending';
   fileSize?: string;
   downloadUrl?: string;
+  error?: string; // Ajouté pour gérer les erreurs dans l'historique
 }
 
 export interface PlatformConfig {

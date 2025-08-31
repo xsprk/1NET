@@ -1,30 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+MediaDownloader
+ 
+A modern, intuitive, and secure application for downloading content from major social media platforms such as YouTube, TikTok, Instagram, and more.
+📖 Overview
+MediaDownloader is a premium template/app designed to provide a seamless, multi-platform downloading experience. Built with a focus on performance, user privacy, and a sleek, customizable interface, it caters to content creators, students, businesses, and the general public.
+Created by PrullaCreative (prullacreative@gmail.com) with Next.js and Framer Motion.
+✨ Key Features
 
-## Getting Started
+Multi-Platform Downloads: Supports 7 major social media platforms.
+Multiple Formats: Download videos, audio, and images in up to 4K quality.
+Customizable Interface: Light/dark themes and custom color options.
+Multilingual Support: French and English with automatic browser language detection.
+Advanced History: Favorites, stats, and search functionality.
+Privacy First: No data stored, no sign-up required, no tracking.
 
-First, run the development server:
+🎯 Target Audience
 
-```bash
+Content Creators: YouTubers, influencers, and marketers for saving, converting, and sharing content.
+Students & Educators: Offline access to tutorials and resources.
+Businesses & Agencies: Competitive analysis and content archiving.
+General Public: Save personal memories and digital media.
+
+⚙️ Technical Specifications
+
+Framework: Next.js 15
+Language: TypeScript
+UI/UX: Tailwind CSS + Framer Motion for smooth animations
+APIs: Multi-API extraction with fallback, CORS proxy, native oEmbed
+Storage: localStorage for preferences and history, lazy loading, responsive design
+
+📌 Use Cases
+
+Content Creators: Back up, convert, and share media effortlessly.
+Education: Access courses and tutorials offline.
+Marketing: Collect trends and perform competitive analysis.
+Personal Archiving: Preserve digital memories securely.
+
+💰 Pricing
+
+Free: Unlimited downloads, all platforms, basic formats.
+Pro ($9/month): Advanced formats (4K, FLAC), cloud history, custom API.
+Enterprise (custom quote): Private deployment, branding, tailored integrations, 24/7 support.
+
+🚀 Getting Started
+Prerequisites
+
+Node.js (v16 or higher)
+npm or yarn
+Git
+
+Installation
+
+Clone the repository:
+git clone https://github.com/prullacreative/mediadownloader.git
+cd mediadownloader
+
+
+Install dependencies:
+npm install
+
+
+Run the development server:
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open http://localhost:3000 in your browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+Build for Production
+npm run build
+npm run start
 
-To learn more about Next.js, take a look at the following resources:
+🙋 FAQ
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Is it free? Yes, unlimited downloads across all platforms with basic formats.
+Which platforms are supported? 7 major social media platforms, including YouTube, TikTok, and Instagram.
+Is it secure? 100% secure with no data sent to servers and no tracking.
+Legal usage? Users are responsible for ensuring compliance with platform terms and local laws.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+📄 License
+This project is licensed under the MIT License. See the LICENSE file for details.
+📧 Contact
+Created by PrullaCreative - prullacreative@gmail.com

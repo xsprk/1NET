@@ -67,7 +67,7 @@ export default function Home() {
               className="w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6"
               style={{ backgroundColor: settings.primaryColor }}
             >
-              <i className="ri-download-2-line text-white w-10 h-10 flex items-center justify-center"></i>
+              <i className="ri-download-2-line text-white w-14 h-14 flex items-center justify-center"></i>
             </div>
             <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
               {t('title')}

@@ -11,7 +11,7 @@ export interface MediaInfo {
   uploadDate?: string;
 }
 
-export type Platform = 'youtube' | 'tiktok' | 'facebook' | 'pinterest' | 'twitter' | 'whatsapp' | 'instagram';
+export type Platform = 'instagram' | 'youtube' | 'facebook' | 'twitter';
 
 export interface DownloadFormat {
   type: 'video' | 'audio' | 'image';

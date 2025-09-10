@@ -270,7 +270,7 @@ const extractWithGenericScraping = async (url: string, platform: Platform): Prom
     const pathSegments = urlObj.pathname.split('/').filter(Boolean);
 
     let title = 'Media Content';
-    let author = getAuthorForPlatform(platform);
+    const author = getAuthorForPlatform(platform);
 
     // Platform-specific URL parsing
     switch (platform) {

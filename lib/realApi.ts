@@ -506,8 +506,8 @@ const generateThumbnail = (platform: Platform): string => {
 
   const seq = Math.random().toString(36).substr(2, 9);
   const width = 640;
-  const height = platform === 'pinterest' || platform === 'tiktok' ? 800 : 360;
-  const orientation = platform === 'pinterest' || platform === 'tiktok' ? 'portrait' : 'landscape';
+  const height = 360;
+const orientation = 'landscape';
 
   return `https://mediadownloader.com/api/search-image?query=${encodeURIComponent(prompts[platform])}&width=${width}&height=${height}&seq=${seq}&orientation=${orientation}`;
 };

@@ -8,30 +8,22 @@ const API_ENDPOINTS = {
   savefrom: 'https://sfrom.net/mates/en/analyze/ajax',
 
   // Platform-specific APIs (only oEmbed/noEmbed endpoints)
+ instagram: {
+    oembed: 'https://api.instagram.com/oembed'
+  },
+
   youtube: {
     noembed: 'https://noembed.com/embed',
     oembed: 'https://www.youtube.com/oembed'
   },
 
-  tiktok: {
-    oembed: 'https://www.tiktok.com/oembed'
-  },
-
-  instagram: {
-    oembed: 'https://api.instagram.com/oembed'
-  },
-
-  facebook: {}, // Removed non-functional endpoints
+facebook: {}, // Removed non-functional endpoints
 
   twitter: {
     oembed: 'https://publish.twitter.com/oembed'
   },
 
-  pinterest: {
-    oembed: 'https://www.pinterest.com/resource/oembed/'
-  },
-
-  whatsapp: {}, // Removed non-functional endpoints
+ // Removed non-functional endpoints
 
   // Proxy and fallback
   allorigins: 'https://api.allorigins.win/get?url=',
@@ -153,11 +145,10 @@ const extractWithCobaltAPI = async (url: string, platform: Platform): Promise<Me
 
 const extractWithOEmbedAPI = async (url: string, platform: Platform): Promise<MediaInfo> => {
   const oembedEndpoints = {
-    youtube: 'https://www.youtube.com/oembed',
-    tiktok: 'https://www.tiktok.com/oembed',
     instagram: 'https://api.instagram.com/oembed',
+    youtube: 'https://www.youtube.com/oembed',
     twitter: 'https://publish.twitter.com/oembed',
-    pinterest: 'https://www.pinterest.com/resource/oembed/'
+
   };
 
   const endpoint = oembedEndpoints[platform as keyof typeof oembedEndpoints];
@@ -283,25 +274,17 @@ const extractWithGenericScraping = async (url: string, platform: Platform): Prom
 
     // Platform-specific URL parsing
     switch (platform) {
+     case 'instagram':
+        const instaMatch = urlObj.pathname.match(/\/p\/([A-Za-z0-9_-]+)/);
+        if (instaMatch) {
+          title = `Instagram Post ${instaMatch[1]}`;
+        }
+        break;
+      
       case 'youtube':
         const videoId = urlObj.searchParams.get('v');
         if (videoId) {
           title = `YouTube Video ${videoId}`;
-        }
-        break;
-
-      case 'tiktok':
-        const tiktokMatch = urlObj.pathname.match(/\/@([^/]+)\/video\/(\d+)/);
-        if (tiktokMatch) {
-          author = `@${tiktokMatch[1]}`;
-          title = `TikTok Video ${tiktokMatch[2]}`;
-        }
-        break;
-
-      case 'instagram':
-        const instaMatch = urlObj.pathname.match(/\/p\/([A-Za-z0-9_-]+)/);
-        if (instaMatch) {
-          title = `Instagram Post ${instaMatch[1]}`;
         }
         break;
 
@@ -362,20 +345,15 @@ const createEnhancedFallback = (url: string, platform: Platform): MediaInfo => {
 
   // Enhanced fallback with more realistic data
   const platformSpecificData = {
-    youtube: {
-      titlePrefix: '🎥 YouTube Video',
-      authorPrefix: 'YouTube Creator',
-      descriptionTemplate: 'YouTube video content'
-    },
-    tiktok: {
-      titlePrefix: '🎵 TikTok Video',
-      authorPrefix: '@creator',
-      descriptionTemplate: 'TikTok video content'
-    },
     instagram: {
       titlePrefix: '📸 Instagram Post',
       authorPrefix: '@user',
       descriptionTemplate: 'Instagram content'
+    },
+    youtube: {
+      titlePrefix: '🎥 YouTube Video',
+      authorPrefix: 'YouTube Creator',
+      descriptionTemplate: 'YouTube video content'
     },
     facebook: {
       titlePrefix: '📘 Facebook Post',
@@ -386,16 +364,6 @@ const createEnhancedFallback = (url: string, platform: Platform): MediaInfo => {
       titlePrefix: '🐦 Twitter Post',
       authorPrefix: '@user',
       descriptionTemplate: 'Twitter content'
-    },
-    pinterest: {
-      titlePrefix: '📌 Pinterest Pin',
-      authorPrefix: 'Pinterest User',
-      descriptionTemplate: 'Pinterest content'
-    },
-    whatsapp: {
-      titlePrefix: '💬 WhatsApp Status',
-      authorPrefix: 'Contact',
-      descriptionTemplate: 'WhatsApp status content'
     }
   };
 
@@ -519,13 +487,10 @@ const getViewsForPlatform = (platform: Platform): string => {
   const multiplier = multipliers[Math.floor(Math.random() * multipliers.length)];
 
   const platformSpecific = {
+    instagram: `${baseViews}${multiplier} views`,
     youtube: `${baseViews}${multiplier} views`,
-    tiktok: `${baseViews}${multiplier} views`,
     facebook: `${baseViews}${multiplier} views`,
-    pinterest: `${baseViews}${multiplier} saves`,
-    twitter: `${baseViews}${multiplier} views`,
-    whatsapp: `${baseViews} views`,
-    instagram: `${baseViews}${multiplier} views`
+    twitter: `${baseViews}${multiplier} views`
   };
 
   return platformSpecific[platform];
@@ -533,14 +498,11 @@ const getViewsForPlatform = (platform: Platform): string => {
 
 const generateThumbnail = (platform: Platform): string => {
   const prompts = {
+    instagram: 'Instagram post thumbnail with square format, aesthetic filters and styling, modern social media design, engaging visual composition, lifestyle or creative theme, optimized for Instagram feed and discovery',
     youtube: 'professional YouTube video thumbnail with vibrant colors, engaging title overlay, modern design, HD quality, YouTube aesthetic, tech or entertainment theme, eye-catching visuals, professional lighting and composition',
-    tiktok: 'viral TikTok video thumbnail with trendy mobile vertical format, colorful gradient background, social media aesthetic, Gen Z style, modern typography, engaging visual elements, vertical orientation optimized for mobile',
     facebook: 'Facebook video post thumbnail with social media engagement style, blue accent colors, community-focused design, clean background, professional yet approachable aesthetic, suitable for social sharing and engagement',
-    pinterest: 'Pinterest pin image with aesthetic vertical design, beautiful color palette, inspiration-focused layout, high-quality visuals, clean typography, lifestyle or DIY theme, optimized for Pinterest discovery and saves',
-    twitter: 'Twitter video thumbnail with clean social media design, blue brand accents, engaging composition, modern typography, news or social content style, optimized for Twitter timeline display and engagement',
-    whatsapp: 'WhatsApp status video thumbnail with green brand theme, mobile-first design, personal and friendly style, clean minimal background, optimized for mobile viewing and sharing in messaging context',
-    instagram: 'Instagram post thumbnail with square format, aesthetic filters and styling, modern social media design, engaging visual composition, lifestyle or creative theme, optimized for Instagram feed and discovery'
-  };
+    twitter: 'Twitter video thumbnail with clean social media design, blue brand accents, engaging composition, modern typography, news or social content style, optimized for Twitter timeline display and engagement'
+   };
 
   const seq = Math.random().toString(36).substr(2, 9);
   const width = 640;

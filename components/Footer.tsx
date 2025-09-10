@@ -66,7 +66,7 @@ export default function Footer() {
         </div>
 
        <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 text-center text-sm text-gray-600 dark:text-gray-400">
-        <p>&copy; 2025 MediaDownloader. All rights reserved. Created by PrullaCreative (<a href="mailto:prullacreative@gmail.com">prullacreative@gmail.com</a>) </p>
+        <p>&copy; 2025 1NE Networks. All rights reserved.</p>
       </div>
       </div>
     </footer>

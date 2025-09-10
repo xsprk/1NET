@@ -1,83 +1,5 @@
 export const translations = {
-  fr: {
-    // Navigation
-    home: 'Accueil',
-    history: 'Historique',
-    about: 'À propos',
-    settings: 'Paramètres',
-    
-    // Main page
-    title: 'Téléchargeur de Contenu Multimédia',
-    subtitle: 'Téléchargez facilement vos vidéos, audios et images préférées depuis YouTube, TikTok, Facebook, Pinterest, X, WhatsApp et Instagram.',
-    inputPlaceholder: 'Collez votre lien YouTube, TikTok, Facebook, Pinterest, X, WhatsApp, Instagram...',
-    analyzeButton: 'Analyser et télécharger',
-    analyzing: 'Analyse en cours...',
-    
-    // Features
-    featuresTitle: 'Fonctionnalités principales',
-    fastEfficient: 'Rapide et efficace',
-    fastEfficiientDesc: 'Téléchargements ultra-rapides avec prévisualisation instantanée',
-    securePrivate: 'Sécurisé et privé',
-    securePrivateDesc: 'Aucune donnée stockée sur nos serveurs, tout reste local',
-    multipleFormats: 'Formats multiples',
-    multipleFormatsDesc: 'Vidéo HD/SD, audio MP3, images haute qualité',
-    
-    // Format selector
-    chooseFormat: 'Choisir le format',
-    video: 'Vidéo',
-    audio: 'Audio',
-    image: 'Image',
-    highQuality: 'Haute qualité',
-    mediumQuality: 'Moyenne qualité',
-    lowQuality: 'Basse qualité',
-    cancel: 'Annuler',
-    download: 'Télécharger',
-    
-    // Download
-    readyToDownload: 'Prêt à télécharger',
-    startDownload: 'Commencer le téléchargement',
-    downloading: 'Téléchargement en cours...',
-    downloadComplete: 'Téléchargement terminé !',
-    downloadSuccess: 'Le fichier a été téléchargé avec succès.',
-    downloadError: 'Erreur de téléchargement',
-    downloadErrorDesc: 'Une erreur s\'est produite lors du téléchargement.',
-    close: 'Fermer',
-    
-    // Errors
-    error: 'Erreur',
-    unsupportedPlatform: 'Plateforme non supportée',
-    linkAnalysisError: 'Erreur lors de l\'analyse du lien',
-    invalidLink: 'Lien invalide',
-    networkError: 'Erreur réseau',
-    
-    // Settings
-    theme: 'Thème',
-    language: 'Langue',
-    primaryColor: 'Couleur principale',
-    darkMode: 'Mode sombre',
-    lightMode: 'Mode clair',
-    
-    // History
-    downloadHistory: 'Historique des téléchargements',
-    noHistory: 'Aucun téléchargement dans l\'historique',
-    clearHistory: 'Effacer l\'historique',
-    favorites: 'Favoris',
-    
-    // About
-    aboutTitle: 'À propos de MediaDownloader',
-    aboutDesc: 'MediaDownloader est une plateforme moderne et gratuite qui vous permet de télécharger facilement vos contenus préférés depuis les principales plateformes sociales.',
-    
-    // Common
-    loading: 'Chargement...',
-    retry: 'Réessayer',
-    views: 'vues',
-    ago: 'il y a',
-    minutes: 'minutes',
-    hours: 'heures',
-    days: 'jours'
-  },
-  
-  en: {
+   en: {
     // Navigation
     home: 'Home',
     history: 'History',
@@ -86,8 +8,8 @@ export const translations = {
     
     // Main page
     title: 'Media Content Downloader',
-    subtitle: 'Easily download your favorite videos, audios and images from YouTube, TikTok, Facebook, Pinterest, X, WhatsApp and Instagram.',
-    inputPlaceholder: 'Paste your YouTube, TikTok, Facebook, Pinterest, X, WhatsApp, Instagram link...',
+    subtitle: 'Easily download your favorite videos, audios and images from Instagram, YouTube, Facebook, and X.',
+    inputPlaceholder: 'Paste your Instagram, YouTube, Facebook, and X link...',
     analyzeButton: 'Analyze and download',
     analyzing: 'Analyzing...',
     
@@ -142,8 +64,8 @@ export const translations = {
     favorites: 'Favorites',
     
     // About
-    aboutTitle: 'About MediaDownloader',
-    aboutDesc: 'MediaDownloader is a modern and free platform that allows you to easily download your favorite content from major social platforms.',
+    aboutTitle: 'About 1NE Networks',
+    aboutDesc: '1NE Networks is a modern and free platform that allows you to easily download your favorite content from major social platforms.',
     
     // Common
     loading: 'Loading...',

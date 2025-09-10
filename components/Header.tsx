@@ -30,9 +30,14 @@ export default function Header() {
                 className="w-10 h-10 rounded-xl flex items-center justify-center"
                 style={{ backgroundColor: settings.primaryColor }}
               >
-                <i className="ri-download-2-line text-white w-6 h-6 flex items-center justify-center"></i>
+                <div 
+  className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white"
+  style={{ backgroundColor: settings.primaryColor }}
+>
+  <span className="text-lg">1NE</span>
+</div>
               </div>
-              <span className="text-xl font-bold text-gray-900 dark:text-white">MediaDownloader</span>
+              <span className="text-xl font-bold text-gray-900 dark:text-white">Networks</span>
             </Link>
 
             <nav className="hidden md:flex items-center space-x-8">

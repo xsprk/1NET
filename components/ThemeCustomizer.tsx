@@ -70,15 +70,15 @@ export default function ThemeCustomizer({ isOpen, onClose }: ThemeCustomizerProp
             <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">{t('language')}</h3>
             <div className="grid grid-cols-2 gap-2">
               <button
-                onClick={() => handleLanguageChange('en')}
-                className={`p-3 rounded-xl border-2 transition-all text-sm font-medium cursor-pointer ${
-                  settings.language === 'en'
-                    ? 'border-blue-500 bg-blue-50 text-blue-600 dark:bg-blue-900/20'
-                    : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 text-gray-700 dark:text-gray-300'
-                }`}
-              >
-                🇬🇧 English
-              </button>
+  onClick={handleLanguageChange}
+  className={`p-3 rounded-xl border-2 transition-all text-sm font-medium cursor-pointer ${
+    settings.language === 'en'
+      ? 'border-blue-500 bg-blue-50 text-blue-600 dark:bg-blue-900/20'
+      : 'border-gray-300 dark:border-gray-600'
+  }`}
+>
+  English 
+</button>
             </div>
           </div>
 

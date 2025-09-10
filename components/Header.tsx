@@ -34,7 +34,7 @@ export default function Header() {
   className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white"
   style={{ backgroundColor: settings.primaryColor }}
 >
-  <span className="text-lg">1NE</span>
+  <span className="text-sm">1NE</span>
 </div>
               </div>
               <span className="text-xl font-bold text-gray-900 dark:text-white">Networks</span>

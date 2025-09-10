@@ -38,7 +38,7 @@ export default function AppProvider({ children }: AppProviderProps) {
     }
     
     // Détecter la langue du navigateur
-    const browserLang = navigator.language.startsWith('fr') ? 'fr' : 'en';
+    const browserLang = navigator.language.startsWith('en') ? 'en';
     if (!savedSettings) {
       setSettings(prev => ({ ...prev, language: browserLang }));
     }

@@ -37,9 +37,9 @@ export default function ThemeCustomizer({ isOpen, onClose }: ThemeCustomizerProp
     updateSettings({ theme: settings.theme === 'light' ? 'dark' : 'light' });
   };
 
-  const handleLanguageChange = (language: 'fr' | 'en') => {
-    updateSettings({ language });
-  };
+  const handleLanguageChange = () => {
+  updateSettings({ language: 'en' });
+};
 
   return (
     <motion.div

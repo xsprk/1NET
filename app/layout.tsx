@@ -23,7 +23,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MediaDownloader",
+  title: "1NE Networks",
   description: "Download media content from various platforms",
 };
 

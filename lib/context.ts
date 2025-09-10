@@ -3,7 +3,7 @@
 import { createContext, useContext } from 'react';
 import { translations } from './translations';
 
-export type Language = 'fr' | 'en';
+export type Language = 'en';
 export type Theme = 'light' | 'dark';
 
 export interface AppSettings {

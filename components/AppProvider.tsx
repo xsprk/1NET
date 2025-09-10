@@ -8,7 +8,7 @@ interface AppProviderProps {
 }
 
 const DEFAULT_SETTINGS: AppSettings = {
-  language: 'fr',
+  language: 'en',
   theme: 'light',
   primaryColor: '#6366F1'
 };
